@@ -1,10 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
-part 'account.g.dart';
-
-@JsonSerializable()
 class Account extends Equatable {
   final String name;
   final DateTime birthday;
@@ -19,9 +15,6 @@ class Account extends Equatable {
     @required this.weight,
     @required this.goalWeight,
   });
-
-  factory Account.fromJson(Map<String, dynamic> json) => _$AccountFromJson(json);
-  Map<String, dynamic> toJson() => _$AccountToJson(this);
 
   @override
   List<Object> get props => [name, birthday, height, weight, goalWeight];

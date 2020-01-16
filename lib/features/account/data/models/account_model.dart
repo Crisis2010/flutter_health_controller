@@ -5,7 +5,6 @@ import '../../domain/entities/account.dart';
 
 part 'account_model.g.dart';
 
-//! BUG with Equatable, doesn't compare properly
 @JsonSerializable()
 class AccountModel extends Account {
   AccountModel({
@@ -14,7 +13,7 @@ class AccountModel extends Account {
     @required int height,
     @required int weight,
     @required int goalWeight,
-  });
+  }) : super(name: name, birthday: birthday, height: height, weight: weight, goalWeight: goalWeight);
 
   factory AccountModel.fromJson(Map<String, dynamic> json) => _$AccountModelFromJson(json);
   Map<String, dynamic> toJson() => _$AccountModelToJson(this);

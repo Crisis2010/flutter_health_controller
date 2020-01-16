@@ -30,13 +30,13 @@ class AccountError extends AccountState {
 }
 
 class AccountInitialized extends AccountState {
-  final Account account;
+  final AccountModel account;
 
   AccountInitialized({@required this.account});
 
   AccountInitialized copyWith({String name, DateTime birthday, int height, int weight, int goalWeight}) {
     return AccountInitialized(
-      account: Account(
+      account: AccountModel(
         name: name ?? this.account.name,
         birthday: birthday ?? this.account.birthday,
         height: height ?? this.account.height,

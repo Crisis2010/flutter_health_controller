@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter_health_controller/features/account/data/models/account_model.dart';
-import 'package:flutter_health_controller/features/account/domain/entities/account.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import './bloc.dart';
 
@@ -13,7 +12,7 @@ class AccountBloc extends HydratedBloc<AccountEvent, AccountState> {
   @override
   AccountState fromJson(Map<String, dynamic> json) {
     try {
-      final account = Account.fromJson(json);
+      final account = AccountModel.fromJson(json);
       return AccountInitialized(account: account);
     } catch (_) {
       return null;
@@ -34,7 +33,7 @@ class AccountBloc extends HydratedBloc<AccountEvent, AccountState> {
     final currentState = state;
 
     if (currentState is InitialAccountState && event is InitAccount) {
-      yield AccountInitialized(account: Account(name: '', birthday: null, height: null, weight: null, goalWeight: null));
+      yield AccountInitialized(account: AccountModel(name: '', birthday: null, height: null, weight: null, goalWeight: null));
       return;
     }
 
