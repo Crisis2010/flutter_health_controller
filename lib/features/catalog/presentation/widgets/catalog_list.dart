@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_health_controller/features/catalog/data/models/food_model.dart';
 
-import 'package:flutter_health_controller/features/catalog/domain/entities/catalog.dart';
 import 'package:flutter_health_controller/features/catalog/presentation/pages/catalog_details_page.dart';
 
 class CatalogList extends StatelessWidget {
   CatalogList(this.data);
 
-  final Catalog data;
+  final FoodModel data;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class CatalogList extends StatelessWidget {
               width: double.infinity,
               height: 65,
               child: Text(
-                data.title,
+                data.label,
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
             ),

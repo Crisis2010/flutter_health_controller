@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_health_controller/features/catalog/domain/entities/catalog.dart';
+import '../../../account/presentation/bloc/bloc.dart';
+import '../../data/models/food_model.dart';
 
 class CatalogDetailsPage extends StatelessWidget {
   CatalogDetailsPage(this.data);
 
-  final Catalog data;
+  final FoodModel data;
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +39,38 @@ class CatalogDetailsPage extends StatelessWidget {
                   );
                 },
               ),
+              SizedBox(height: 12.0),
               Container(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Text(
-                  data.title,
+                  data.category,
                   style: TextStyle(
-                    fontSize: 26.0,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.blue,
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                margin: const EdgeInsets.only(bottom: 20.0),
+                child: Text(
+                  data.label.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 32.0,
                     fontWeight: FontWeight.bold,
+                    height: 1.0,
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Text(
+                  'Колорий: ${data.colories.toStringAsFixed(0)}',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    height: 1.0,
+                    color: Colors.grey[600],
                   ),
                 ),
               ),
@@ -51,12 +78,20 @@ class CatalogDetailsPage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print('Presed');
+      floatingActionButton: BlocBuilder<AccountBloc, AccountState>(
+        builder: (context, state) {
+          if (state is AccountInitialized && !state.account.contains(data)) {
+            return FloatingActionButton(
+              onPressed: () {
+                BlocProvider.of<AccountBloc>(context).add(AddFoodStatistic(foodData: data));
+              },
+              tooltip: 'Добавить',
+              child: Icon(Icons.add),
+            );
+          }
+
+          return Container();
         },
-        tooltip: 'Добавить',
-        child: Icon(Icons.add),
       ),
     );
   }
