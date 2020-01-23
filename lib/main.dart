@@ -5,11 +5,14 @@ import 'package:flutter_health_controller/features/account/presentation/bloc/blo
 import 'package:flutter_health_controller/features/account/presentation/pages/account_page.dart';
 import 'package:flutter_health_controller/features/catalog/presentation/pages/catalog_page.dart';
 import 'package:flutter_health_controller/features/colories/presentation/pages/colories_page.dart';
+import 'package:flutter_health_controller/features/statistic/presentation/pages/statistic_page.dart';
 import 'package:flutter_health_controller/simple_hydrated_bloc_delegate.dart';
 
+import 'injection_container.dart' as di;
+
 void main() async {
+  di.init();
   WidgetsFlutterBinding.ensureInitialized();
-  // BlocSupervisor.delegate = SimpleBlocDelegate();
   BlocSupervisor.delegate = await SimpleHydratedBlocDelegate.build();
   runApp(App());
 }
@@ -43,10 +46,7 @@ class _TabsPageState extends State<TabsPage> {
   static List<Widget> _widgetOptions = <Widget>[
     ColoriesPage(),
     CatalogPage(),
-    Text(
-      'WIP',
-      style: optionStyle,
-    ),
+    StatisticPage(),
     AccountPage(),
   ];
 
@@ -75,7 +75,7 @@ class _TabsPageState extends State<TabsPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.insert_chart),
-            title: Text('Графики'),
+            title: Text('Статистика'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
