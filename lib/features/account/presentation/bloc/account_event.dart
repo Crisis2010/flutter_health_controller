@@ -1,7 +1,8 @@
-import 'package:flutter_health_controller/features/account/domain/entities/account.dart';
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-import 'package:equatable/equatable.dart';
+import '../../../catalog/data/models/food_model.dart';
+import '../../domain/entities/account.dart';
 
 abstract class AccountEvent extends Equatable {
   const AccountEvent();
@@ -77,4 +78,28 @@ class SetGoalWeight extends AccountEvent {
 
   @override
   String toString() => 'SetGoalWeight { weight: $weight }';
+}
+
+class AddWeightStatistic extends AccountEvent {
+  final double calculatedWeight;
+
+  AddWeightStatistic({@required this.calculatedWeight});
+
+  @override
+  List<Object> get props => [calculatedWeight];
+
+  @override
+  String toString() => 'AddWeightStatistic { calculatedWeight: $calculatedWeight }';
+}
+
+class AddFoodStatistic extends AccountEvent {
+  final FoodModel foodData;
+
+  AddFoodStatistic({@required this.foodData});
+
+  @override
+  List<Object> get props => [foodData];
+
+  @override
+  String toString() => 'AddFoodStatistic { foodData: $foodData }';
 }

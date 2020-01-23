@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_health_controller/features/catalog/data/models/food_model.dart';
+
 import 'package:meta/meta.dart';
 
 class Account extends Equatable {
@@ -7,6 +9,8 @@ class Account extends Equatable {
   final int height;
   final int weight;
   final int goalWeight;
+  final List<Map<String, List<FoodModel>>> foodStatistic;
+  final List<Map<String, double>> weightStatistic;
 
   Account({
     @required this.name,
@@ -14,11 +18,24 @@ class Account extends Equatable {
     @required this.height,
     @required this.weight,
     @required this.goalWeight,
+    this.foodStatistic,
+    this.weightStatistic,
   });
 
-  @override
-  List<Object> get props => [name, birthday, height, weight, goalWeight];
+  double get totalColories => foodStatistic.fold(0, (a, b) => a + b[DateTime.now().weekday.toString()].map((i) => i.colories).first);
 
   @override
-  String toString() => 'Account { name: $name, birthday: $birthday, height: $height, weight: $weight, goalWeight: $goalWeight }';
+  List<Object> get props => [
+        name,
+        birthday,
+        height,
+        weight,
+        goalWeight,
+        foodStatistic,
+        weightStatistic,
+      ];
+
+  @override
+  String toString() =>
+      'Account { name: $name, birthday: $birthday, height: $height, weight: $weight, goalWeight: $goalWeight, foodStatistic: $foodStatistic, weightStatistic: $weightStatistic }';
 }

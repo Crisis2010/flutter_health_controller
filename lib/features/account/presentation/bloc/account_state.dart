@@ -1,9 +1,8 @@
+import 'package:equatable/equatable.dart';
+import 'package:flutter_health_controller/features/catalog/data/models/food_model.dart';
 import 'package:meta/meta.dart';
 
-import 'package:equatable/equatable.dart';
-
-import 'package:flutter_health_controller/features/account/domain/entities/account.dart';
-import 'package:flutter_health_controller/features/account/data/models/account_model.dart';
+import '../../data/models/account_model.dart';
 
 abstract class AccountState extends Equatable {
   const AccountState();
@@ -34,7 +33,15 @@ class AccountInitialized extends AccountState {
 
   AccountInitialized({@required this.account});
 
-  AccountInitialized copyWith({String name, DateTime birthday, int height, int weight, int goalWeight}) {
+  AccountInitialized copyWith({
+    String name,
+    DateTime birthday,
+    int height,
+    int weight,
+    int goalWeight,
+    List<Map<String, List<FoodModel>>> foodStatistic,
+    List<Map<String, double>> weightStatistic,
+  }) {
     return AccountInitialized(
       account: AccountModel(
         name: name ?? this.account.name,
@@ -42,6 +49,8 @@ class AccountInitialized extends AccountState {
         height: height ?? this.account.height,
         weight: weight ?? this.account.weight,
         goalWeight: goalWeight ?? this.account.goalWeight,
+        foodStatistic: foodStatistic ?? this.account.foodStatistic,
+        weightStatistic: weightStatistic ?? this.account.weightStatistic,
       ),
     );
   }
