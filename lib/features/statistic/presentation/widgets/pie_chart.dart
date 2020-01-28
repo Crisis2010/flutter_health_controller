@@ -41,8 +41,9 @@ class _PieStatisticChartState extends State<PieStatisticChart> {
             Stack(
               alignment: Alignment.center,
               children: <Widget>[
-                AspectRatio(
-                  aspectRatio: 1.15,
+                Container(
+                  height: 350,
+                  width: double.infinity,
                   child: PieChart(
                     PieChartData(
                       pieTouchData: PieTouchData(touchCallback: (pieTouchResponse) {
@@ -108,7 +109,6 @@ class _PieStatisticChartState extends State<PieStatisticChart> {
         counter++;
         return Container(
           margin: const EdgeInsets.only(bottom: 6.0),
-          width: 130,
           child: Indicator(
             color: colors[counter],
             text: item.label,
