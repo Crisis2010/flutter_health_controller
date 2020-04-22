@@ -66,7 +66,7 @@ class _TabsPageState extends State<TabsPage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.accessibility_new),
+            icon: Icon(Icons.accessibility_new, key: Key('coloriesTab')),
             title: Text('Подсчёт'),
           ),
           BottomNavigationBarItem(
@@ -78,7 +78,7 @@ class _TabsPageState extends State<TabsPage> {
             title: Text('Статистика'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
+            icon: Icon(Icons.account_circle, key: Key('accountTab')),
             title: Text('Аккаунт'),
           ),
         ],

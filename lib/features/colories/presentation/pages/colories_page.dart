@@ -48,6 +48,7 @@ class ColoriesPage extends StatelessWidget {
                         ? Padding(
                             padding: const EdgeInsets.all(18.0),
                             child: RaisedButton(
+                              key: Key('showResult'),
                               child: Text('Проверить вес'),
                               onPressed: () async {
                                 if (_formKey.currentState.validate()) {
@@ -70,7 +71,10 @@ class ColoriesPage extends StatelessWidget {
                                                 title: const Text('Ваш результат!'),
                                                 contentPadding: const EdgeInsets.fromLTRB(24.0, 12.0, 24.0, 16.0),
                                                 children: <Widget>[
-                                                  Text('Результат: ${state.colories.toStringAsFixed(2)}'),
+                                                  Text(
+                                                    'Результат: ${state.colories.toStringAsFixed(2)}',
+                                                    key: Key('calcResult'),
+                                                  ),
                                                   Text(state.result),
                                                 ],
                                               );

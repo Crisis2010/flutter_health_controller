@@ -53,6 +53,7 @@ class _AccountPageState extends State<AccountPage> {
                       style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
                     ),
                     TextFormField(
+                      key: Key('textFormName'),
                       controller: _nameController,
                       decoration: const InputDecoration(
                         hintText: 'Укажите своё имя',
@@ -107,6 +108,7 @@ class _AccountPageState extends State<AccountPage> {
                       ),
                     ),
                     TextFormField(
+                      key: Key('textFormHeight'),
                       controller: _heightController,
                       decoration: const InputDecoration(
                         hintText: 'Укажите свой рост',
@@ -126,6 +128,7 @@ class _AccountPageState extends State<AccountPage> {
                       children: <Widget>[
                         Flexible(
                           child: TextFormField(
+                            key: Key('textFormCurrentWeight'),
                             controller: _weightController,
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
@@ -148,6 +151,7 @@ class _AccountPageState extends State<AccountPage> {
                         ),
                         Flexible(
                           child: TextFormField(
+                            key: Key('textFormGoalWeight'),
                             controller: _weightGoalController,
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
